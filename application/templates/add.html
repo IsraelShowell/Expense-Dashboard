@@ -1,0 +1,55 @@
+<!--
+The below code is the template for the index page.
+It extends the layout.html template and fills in the content block with the content for the index page.
+
+-->
+
+<!--
+Everything inside this block will be rendered inside the index.html page.
+This is the child of the layout.html template.
+-->
+
+{% extends 'layout.html' %}
+{% block content %}
+<div class="col-xs-10 col-sm-6 col-md-6">
+    <div class="card card-style mb-2">
+        <div class="card-body">
+            <form action="" method="POST">
+                {{ form.csrf_token() }}
+                <fieldset class="form-group">
+                    <legend class="mb-4">Expenses & Incomes</legend>
+                    <div class="form-group">
+                        {{ form.amount.label(class="form-control-label") }}
+                        {% if form.amount.errors %}
+                        {{ form.amount(class="form-control form-control-sm is-invalid") }}
+                        {% for error in form.amount.errors %}
+                        <div class="invalid-feedback">
+                            <span>{{error}}</span>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        {{ form.amount(class="form-control form-control-sm") }}
+                        {% endif %}
+                    </div>
+            
+                    <div class="form-group">
+                        {{ form.type.label(class = "form-control-label") }}
+                        {{ form.type(class = "form-control form-control-sm") }}
+                    </div>
+            
+                    <div class="form-group">
+                        {{ form.category.label(class = "form-control-label") }}
+                        {{ form.category(class = "form-control form-control-sm") }}
+                    </div>
+            
+                    <div class="form-group border-bottom pb-3">
+                        {{ form.submit(class="btn btn-outline-info")}}
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}
+
