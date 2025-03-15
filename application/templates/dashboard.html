@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+
 <div class="col-xs-10 col-sm-6 col-md-6">
     <div class="card card-style mb-2">
         <div class="card-body">
@@ -14,7 +15,18 @@
     <div class="card card-style mb-2">
         <div class="card-body">
             <div class="chart-container" style="position: relative;">
-                <canvas id="expenses_over_time"></canvas>
+                <canvas id="income_vs_category"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-xs-10 col-sm-6 col-md-6">
+    <div class="card card-style mb-2">
+        <div class="card-body">
+            <div class="chart-container" style="position: relative;">
+                <canvas id="expense_time"></canvas>
             </div>
         </div>
     </div>
@@ -34,7 +46,7 @@
     let income_vs_expense_data = JSON.parse({{ income_vs_expense | tojson }})
     let income_category_data = JSON.parse({{ income_category | tojson}})
 
-    let income_vs_expense_chart = new Chart(income_vs_expense, {
+    let income_vs_expense_chart = new Chart(document.getElementById("income_vs_expense"), {
             type: 'pie',
             data: {
             labels: ['expense', 'income'],
@@ -72,7 +84,7 @@
         });
 
 
-        let income_vs_category_chart = new Chart(income_vs_category, {
+        let income_vs_category_chart = new Chart(document.getElementById("income_vs_category"), {
             type: 'bar',
             data: {
                 labels: ['investment', 'rent', 'salary', 'side_hustle'],
@@ -107,10 +119,14 @@
             }
             }
         })
-        let amounts = JSON.parse({{over_time_expenditure | tojson}})
-        let labels = JSON.parse({{ dates_label  | tojson}})
 
-        new Chart(document.getElementById("expenses_over_time"), {
+        let amounts = {{ over_time_expenditure | tojson }};
+        let labels = {{ dates_label | tojson }};
+
+        console.log(amounts);
+        console.log(labels);
+
+        new Chart(document.getElementById("expense_time"), {
                 type: "line",
                 data:
                 {

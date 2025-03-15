@@ -30,7 +30,8 @@ In order to run this program follow the steps below;
 
 
 # Future Features to Implement:
-- 
+- None, this project was more for learning and improving my programming skills
 
 # Known/Possible Bugs:
 - No errors.....yet
+- The line graph doesn't properly display the dates
